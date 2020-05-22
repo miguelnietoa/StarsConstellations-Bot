@@ -5,26 +5,24 @@ from modelo import Modelo
 m = Modelo()
 
 
+# --------------------- Comandos -----------------------------
+
 def start(update, context):
     try:
         update.message.reply_text('¡Hola! Bienvenido(a), soy un bot que te ayudará a visualizar'
                                   ' lo impresionante que es el universo con sus estrellas'
                                   ' y constelaciones. %s %s' % (u'\U0001F60A', u'\U0001F31F'))
-        update.message.reply_text(main_menu_message(),
-                                  reply_markup=main_menu_keyboard())
     except Exception as e:
         print('Error en start: ', e)
 
 
-def opciones(update, context):
-    pass
+def menu(update, context):
+    update.message.reply_text(main_menu_message(),
+                              reply_markup=main_menu_keyboard())
 
 
-# -------------------- Menú's ---------------------------
-
-def menu_main(update, context):
-    return update.message.reply_text(main_menu_message(),
-                                     reply_markup=main_menu_keyboard())
+def help(update, context):
+    update.message.reply_text('Commands: \n /menu')
 
 
 # -------------------- Keyboards -------------------------
@@ -79,17 +77,12 @@ def constellation_menu_message():
 def ver_estrellas(update, context):
     print('ver estrellas')
     try:
-        chat_id = update.callback_query.message.chat.id
         query = update.callback_query
+        chat_id = query.message.chat.id
         query.edit_message_text(text="¡Listo! Te mostraré las estrellas.")
-        if os.path.isfile('generated/stars.png'):
-            context.bot.send_photo(chat_id, open('generated/stars.png', 'rb'))
-        else:
+        if not os.path.isfile('generated/stars.png'):
             m.plot_stars()
-            context.bot.send_photo(chat_id, open('generated/stars.png', 'rb'))
-
-        update.callback_query.message.reply_text(text=main_menu_message(),
-                                                 reply_markup=main_menu_keyboard())
+        context.bot.send_photo(chat_id, open('generated/stars.png', 'rb'))
     except Exception as e:
         print('Error:', e)
 
@@ -100,13 +93,9 @@ def ver_todas(update, context):
         chat_id = update.callback_query.message.chat.id
         query = update.callback_query
         query.edit_message_text(text="¡Fantástico! Observa todas las estrellas y constelaciones.")
-        if os.path.isfile('generated/all.png'):
-            context.bot.send_photo(chat_id, open('generated/all.png', 'rb'))
-        else:
+        if not os.path.isfile('generated/all.png'):
             m.plot_stars_and_constellations()
-            context.bot.send_photo(chat_id, open('generated/all.png', 'rb'))
-        update.callback_query.message.reply_text(text=main_menu_message(),
-                                                 reply_markup=main_menu_keyboard())
+        context.bot.send_photo(chat_id, open('generated/all.png', 'rb'))
     except Exception as e:
         print('Error:', e)
 
@@ -133,13 +122,9 @@ def cargar_constelacion(update, context):
         query.edit_message_text(text="¡Excelente! has seleccionado %s" % query.data)
         query.message.reply_text(text='¿Sabías que?\n%s' % get_dato_interesante(constellation))
         path = 'generated/%s.png' % constellation
-        if os.path.isfile(path):
-            context.bot.send_photo(chat_id, open(path, 'rb'))
-        else:
+        if not os.path.isfile(path):
             m.plot_stars_and_constellation(constellation)
-            context.bot.send_photo(chat_id, open(path, 'rb'))
-        update.callback_query.message.reply_text(text=main_menu_message(),
-                                                 reply_markup=main_menu_keyboard())
+        context.bot.send_photo(chat_id, open(path, 'rb'))
     except Exception as e:
         print('Error:', e)
 
