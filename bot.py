@@ -11,7 +11,8 @@ def start(update, context):
     try:
         update.message.reply_text('¡Hola! Bienvenido(a), soy un bot que te ayudará a visualizar'
                                   ' lo impresionante que es el universo con sus estrellas'
-                                  ' y constelaciones. %s %s' % (u'\U0001F60A', u'\U0001F31F'))
+                                  ' y constelaciones. %s %s\n\nSi quieres ver qué puedo hacer '
+                                  'solamente tienes que ejecutar el comando /menu.' % (u'\U0001F60A', u'\U0001F31F'))
     except Exception as e:
         print('Error en start: ', e)
 
