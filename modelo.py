@@ -11,7 +11,6 @@ class Modelo:
         self.constellations = dict()
         self.__read_coords('files/stars.txt')
         self.__read_constellations()
-        print('creado todo')
 
     def __read_coords(self, filepath):
         file = open(filepath, 'r', encoding='utf-8')
@@ -97,4 +96,3 @@ class Modelo:
         im = PIL.Image.open(path)
         im = im.crop((150, 150, 1070, 1070))
         im.save(path, 'png')
-        print("Se ha guardado la imagen.")

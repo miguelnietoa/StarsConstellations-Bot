@@ -21,10 +21,6 @@ def menu(update, context):
                               reply_markup=main_menu_keyboard())
 
 
-def help(update, context):
-    update.message.reply_text('Commands: \n /menu')
-
-
 # -------------------- Keyboards -------------------------
 
 def main_menu_keyboard():
@@ -75,7 +71,6 @@ def constellation_menu_message():
 # --------------------------------------------------------
 
 def ver_estrellas(update, context):
-    print('ver estrellas')
     try:
         query = update.callback_query
         chat_id = query.message.chat.id
@@ -88,7 +83,6 @@ def ver_estrellas(update, context):
 
 
 def ver_todas(update, context):
-    print('estrellas y constelaciones')
     try:
         chat_id = update.callback_query.message.chat.id
         query = update.callback_query
@@ -101,7 +95,6 @@ def ver_todas(update, context):
 
 
 def ver_constelacion(update, context):
-    print('constelacion')
     try:
         chat_id = update.callback_query.message.chat.id
         query = update.callback_query
@@ -114,7 +107,6 @@ def ver_constelacion(update, context):
 
 
 def cargar_constelacion(update, context):
-    print('seleccionada la constelacion')
     try:
         query = update.callback_query
         chat_id = query.message.chat.id
