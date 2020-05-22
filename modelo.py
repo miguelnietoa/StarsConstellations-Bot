@@ -69,7 +69,9 @@ class Modelo:
             p1, p2 = union
             x1, y1 = self.starcoords[self.starnames[p1]]
             x2, y2 = self.starcoords[self.starnames[p2]]
-            ax.plot([x1, x2], [y1, y2], c=color)
+            line, = ax.plot([x1, x2], [y1, y2], c=color)
+        line.set_label(name)
+        ax.legend()
         return fig, ax
 
     def plot_stars_and_constellations(self):
