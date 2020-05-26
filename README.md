@@ -5,7 +5,7 @@ create a picture that plots the locations of stars. </p>
 
 <p> Since a real data set often has some incorrect data and the
 occasional field missing, a cleaned up catalog has been prepared for your
-use in this assignment. The file [stars.txt](./files/stars.txt) contains one line for each
+use in this assignment. The file <a href="https://github.com/miguelnietoa/StarsConstellations-Bot/blob/master/files/stars.txt"> stars.txt</a> contains one line for each
 star that is represented in the catalog. The meaning of each field
 (column) is described below.</p>
 
@@ -35,3 +35,5 @@ collected from different sources, and the catalogs have several different ways
 to uniquely identify stars. The fields that you will need for this assignment
 include the x and y coordinates, the magnitude, the Henry Draper number, and
 the name (or names) of each star.</p>
+
+<b>This problem is an adaptation of <a href="http://nifty.stanford.edu/2009/reid-starmap/starmap.html">[1]</a>.</b>
